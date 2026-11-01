@@ -22,16 +22,18 @@ def main():
             if not checkLinkDetails(linkDetails): continue
             if linkDetails[0] == RANDOM_LINK:
                 linkLen = RANDOM_LINK_LEN
+                allowedAuto = ALLOWED
+                for char in "-_ÄÖÜ": allowedAuto = allowedAuto.replace(char, "")
                 if RANDOM_LINK_LEN_VARIATION > 0:
                     if random.randint(0, 1) == 1:
                         linkLen = RANDOM_LINK_LEN + random.randint(0, RANDOM_LINK_LEN_VARIATION)
                     else:
                         linkLen = RANDOM_LINK_LEN - random.randint(0, RANDOM_LINK_LEN_VARIATION)
-                ran_string = "".join(random.choices(ALLOWED, k=linkLen)).lower()
+                ran_string = "".join(random.choices(allowedAuto, k=linkLen)).lower()
                 while (link.checkBlacklist(ran_string) == INVALID_LINK):
-                    ran_string = "".join(random.choices(ALLOWED, k=linkLen)).lower()
+                    ran_string = "".join(random.choices(allowedAuto, k=linkLen)).lower()
                 while (ran_string in links):
-                    ran_string = "".join(random.choices(ALLOWED, k=linkLen)).lower()
+                    ran_string = "".join(random.choices(allowedAuto, k=linkLen)).lower()
                 linkDetails[0] = ran_string
             if linkDetails[0] in links:
                 ui.error(SHORTCODE_IN_USE)
