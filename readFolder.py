@@ -2,7 +2,9 @@ import os as os
 import LINK_BLACKLIST as linkBlacklist
 
 from MAGIC_NUMBERS import *
+
 DIR_BALCKLIST = linkBlacklist.getBlacklist()
+
 
 def getLinks(folderPath):
     print(folderPath)
@@ -13,13 +15,14 @@ def getLinks(folderPath):
 
 
 def getDestination(link, folderPath):
-    if link.upper() in DIR_BALCKLIST: return INVALID_LINK
+    if link.upper() in DIR_BALCKLIST:
+        return INVALID_LINK
 
     destination = ""
-    
+
     with open(folderPath + "/" + link + "/index.html", "r") as file:
         for line in file:
             destination = line.replace("\n", "")
             break
-    
-    return destination 
+
+    return destination

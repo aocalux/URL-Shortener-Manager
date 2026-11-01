@@ -8,70 +8,89 @@ from MAGIC_NUMBERS import *
 
 ALLOWED = allowedChars.get()
 
+
 def main():
     ui.startup()
     # folderPath = ui.getFolderPath()
     folderPath = "/Users/pri/Documents/Code/go.juliapri.pink/"
-    
 
     while True:
         links = readF.getLinks(folderPath)
         option = ui.options()
         if option == NEW_LINK:
             linkDetails = ui.newLink()
-            if not checkLinkDetails(linkDetails): continue
+            if not checkLinkDetails(linkDetails):
+                continue
             if linkDetails[0] == RANDOM_LINK:
                 linkLen = RANDOM_LINK_LEN
                 allowedAuto = ALLOWED
-                for char in "-_ÄÖÜ": allowedAuto = allowedAuto.replace(char, "")
+                for char in "-_ÄÖÜ":
+                    allowedAuto = allowedAuto.replace(char, "")
                 if RANDOM_LINK_LEN_VARIATION > 0:
                     if random.randint(0, 1) == 1:
-                        linkLen = RANDOM_LINK_LEN + random.randint(0, RANDOM_LINK_LEN_VARIATION)
+                        linkLen = RANDOM_LINK_LEN + random.randint(
+                            0, RANDOM_LINK_LEN_VARIATION
+                        )
                     else:
-                        linkLen = RANDOM_LINK_LEN - random.randint(0, RANDOM_LINK_LEN_VARIATION)
+                        linkLen = RANDOM_LINK_LEN - random.randint(
+                            0, RANDOM_LINK_LEN_VARIATION
+                        )
                 ran_string = "".join(random.choices(allowedAuto, k=linkLen)).lower()
-                while (link.checkBlacklist(ran_string) == INVALID_LINK):
+                while link.checkBlacklist(ran_string) == INVALID_LINK:
                     ran_string = "".join(random.choices(allowedAuto, k=linkLen)).lower()
-                while (ran_string in links):
+                while ran_string in links:
                     ran_string = "".join(random.choices(allowedAuto, k=linkLen)).lower()
                 linkDetails[0] = ran_string
             if linkDetails[0] in links:
                 ui.error(SHORTCODE_IN_USE)
                 continue
             else:
-                if link.create(linkDetails, folderPath) == INVALID_LINK: ui.error(INVALID_LINK)
-                else: ui.showLink(linkDetails)
+                if link.create(linkDetails, folderPath) == INVALID_LINK:
+                    ui.error(INVALID_LINK)
+                else:
+                    ui.showLink(linkDetails)
         elif option == EDIT_DESTINATION:
             linkDetails = ui.editLink(links)
-            if not checkLinkDetails(linkDetails): continue
+            if not checkLinkDetails(linkDetails):
+                continue
             if linkDetails[0] not in links:
                 ui.error(LINK_NOT_FOUND)
                 continue
             else:
-                if link.editLink(linkDetails, folderPath) == INVALID_LINK: ui.error(INVALID_LINK)
-        elif option == DEL_LINK: 
+                if link.editLink(linkDetails, folderPath) == INVALID_LINK:
+                    ui.error(INVALID_LINK)
+        elif option == DEL_LINK:
             linkDetails = ui.delLink(links)
-            if not checkLinkDetails(linkDetails): continue
-            if linkDetails is None: continue
+            if not checkLinkDetails(linkDetails):
+                continue
+            if linkDetails is None:
+                continue
             if linkDetails[0] not in links:
                 ui.error(LINK_NOT_FOUND)
                 continue
-            if link.delLink(linkDetails, folderPath) == INVALID_LINK: ui.error(INVALID_LINK)
+            if link.delLink(linkDetails, folderPath) == INVALID_LINK:
+                ui.error(INVALID_LINK)
         elif option == EDIT_SHORTCODE:
             oldShortcode, newShortcode = ui.editLinkShortcode(links)
-            if not oldShortcode.strip(): continue
-            if not newShortcode.strip(): continue
-            if newShortcode in links: 
+            if not oldShortcode.strip():
+                continue
+            if not newShortcode.strip():
+                continue
+            if newShortcode in links:
                 ui.error(SHORTCODE_IN_USE)
                 continue
             if oldShortcode not in links:
                 ui.error(LINK_NOT_FOUND)
                 continue
             destination = readF.getDestination(oldShortcode, folderPath)
-            if destination == INVALID_LINK: 
+            if destination == INVALID_LINK:
                 ui.error(INVALID_LINK)
                 continue
-            if link.editShortcode(oldShortcode, newShortcode, destination, folderPath) == INVALID_LINK: ui.error(INVALID_LINK)
+            if (
+                link.editShortcode(oldShortcode, newShortcode, destination, folderPath)
+                == INVALID_LINK
+            ):
+                ui.error(INVALID_LINK)
         elif option == SHOW_LINKS_AND_DESTINATION:
             linkTable = []
             for linkv in links:
@@ -84,7 +103,6 @@ def main():
                 ui.error(LINK_NOT_FOUND)
                 continue
             ui.showLink([shortcode, readF.getDestination(shortcode, folderPath)])
-
 
 
 def checkLinkDetails(linkDetails):

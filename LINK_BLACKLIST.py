@@ -12,13 +12,12 @@ DIR_BLACKLIST = [
     "ROBOTS.TXT",
     "SECURITY.TXT",
 ]
-SYS_COMMANDS = [
-    "RAN"
-]
+SYS_COMMANDS = ["RAN"]
 # if set to false only the internally used magic numbers will be blocked
 BLACKLIST_NUMBERS_TO_99 = True
 
 from MAGIC_NUMBERS import *
+
 
 def getBlacklist():
     blist = DIR_BLACKLIST

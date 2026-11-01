@@ -1,5 +1,6 @@
 from MAGIC_NUMBERS import *
 
+
 def startup():
     print("Hi!")
 
@@ -40,6 +41,7 @@ def showLinkDestination():
     shortcode = input("Shortcode: ").lower()
     return shortcode
 
+
 def showLink(linkDetails):
     print("https://" + ROOT_DOMAIN + "/" + linkDetails[0] + " => " + linkDetails[1])
 
@@ -55,7 +57,8 @@ def delLink(links):
     print(links)
     link = input("link to del: ").lower()
     confirmLink = input(f"type {link} to confirm: ").lower()
-    if link == confirmLink: return [link, ""]
+    if link == confirmLink:
+        return [link, ""]
     error(3)
     return None
 
@@ -63,7 +66,7 @@ def delLink(links):
 def error(errorcode):
     if errorcode == SHORTCODE_IN_USE:
         print("Shortcode already in use!")
-    elif errorcode == LINK_NOT_FOUND: 
+    elif errorcode == LINK_NOT_FOUND:
         print("Link not found!")
     elif errorcode == DEL_ABORT:
         print("del abort")
@@ -71,4 +74,3 @@ def error(errorcode):
         print("missing argument")
     elif errorcode == INVALID_LINK:
         print("invalid link")
-    

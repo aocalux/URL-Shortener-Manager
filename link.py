@@ -5,11 +5,14 @@ import LINK_BLACKLIST as linkBlacklist
 import ALLOWED_CHARS as allowedChars
 
 from MAGIC_NUMBERS import *
+
 DIR_BALCKLIST = linkBlacklist.getBlacklist()
 ALLOWED = allowedChars.get()
 
+
 def create(linkDetails, folderPath):
-    if checkBlacklist(linkDetails[0]) == INVALID_LINK: return INVALID_LINK
+    if checkBlacklist(linkDetails[0]) == INVALID_LINK:
+        return INVALID_LINK
 
     indexLoc = folderPath + "/" + linkDetails[0] + "/index.html"
 
@@ -18,23 +21,27 @@ def create(linkDetails, folderPath):
         index.write(getTemplate().replace("{link.destination}", linkDetails[1]))
 
 
-def editLink(linkDetails, folderPath): 
-    if checkBlacklist(linkDetails[0]) == INVALID_LINK: return INVALID_LINK
+def editLink(linkDetails, folderPath):
+    if checkBlacklist(linkDetails[0]) == INVALID_LINK:
+        return INVALID_LINK
 
     delLink(linkDetails, folderPath)
     create(linkDetails, folderPath)
 
 
 def delLink(linkDetails, folderPath):
-    if checkBlacklist(linkDetails[0]) == INVALID_LINK: return INVALID_LINK
+    if checkBlacklist(linkDetails[0]) == INVALID_LINK:
+        return INVALID_LINK
 
     path = folderPath + linkDetails[0]
     shutil.rmtree(path)
 
 
 def editShortcode(oldShortcode, newShortcode, destination, folderPath):
-    if checkBlacklist(oldShortcode) == INVALID_LINK: return INVALID_LINK
-    if checkBlacklist(newShortcode) == INVALID_LINK: return INVALID_LINK
+    if checkBlacklist(oldShortcode) == INVALID_LINK:
+        return INVALID_LINK
+    if checkBlacklist(newShortcode) == INVALID_LINK:
+        return INVALID_LINK
 
     print(oldShortcode, newShortcode, destination)
     create([newShortcode, destination], folderPath)
@@ -68,5 +75,3 @@ def checkBlacklistHelper(link):
             print(char)
             return False
     return True
-    
-    
