@@ -10,12 +10,12 @@ def getFolderPath():
 
 
 def options():
-    print("1 - New Link")
-    print("2 - Edit Link destination")
-    print("3 - Delete Link")
-    print("4 - edit link shortcode")
-    print("5 - show links and destinations")
-    print("6 - show link destination")
+    print(f"{NEW_LINK} - New Link")
+    print(f"{EDIT_DESTINATION} - Edit Link destination")
+    print(f"{DEL_LINK} - Delete Link")
+    print(f"{EDIT_SHORTCODE} - edit link shortcode")
+    print(f"{SHOW_LINKS_AND_DESTINATION} - show links and destinations")
+    print(f"{SHOW_LINK_DESTINATION} - show link destination")
     return int(input("Select an Option: "))
 
 
