@@ -1,6 +1,5 @@
 import os as os
 import shutil as shutil
-import re as re
 import LINK_BLACKLIST as linkBlacklist
 import ALLOWED_CHARS as allowedChars
 
