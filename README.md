@@ -1,3 +1,2 @@
 # URL-Shortener-Manager
-Not even in alpha jet! 
- 
+Not even in alpha jet!
