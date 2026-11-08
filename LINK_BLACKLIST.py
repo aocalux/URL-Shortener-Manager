@@ -1,4 +1,4 @@
-# Shortcode witch are't allowed
+# Shortcode witch aren't allowed
 DIR_BLACKLIST = [
     ".GIT",
     "STYLE",
