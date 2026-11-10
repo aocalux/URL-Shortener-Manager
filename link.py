@@ -74,3 +74,9 @@ def checkBlacklistHelper(link):
             print(char)
             return False
     return True
+
+
+def check_link_details(link_details):
+    if link_details[0].strip():
+        return True
+    return False
