@@ -1,10 +1,8 @@
 import readFolder as readF
 import ui as ui
 import MAGIC_NUMBERS as MAGIC_NUMBERS
-import ALLOWED_CHARS as ALLOWED_CHARS
 import options as options
 
-ALLOWED = ALLOWED_CHARS.get()
 
 
 def loop(folder_path):

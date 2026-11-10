@@ -1,6 +1,6 @@
 import ui as ui
 
-import loop as loop
+import loops as loop
 
 
 def main():

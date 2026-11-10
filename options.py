@@ -4,7 +4,9 @@ import link as link
 import readFolder as readF
 import ui as ui
 from MAGIC_NUMBERS import *
-from loop import ALLOWED
+import ALLOWED_CHARS as ALLOWED_CHARS
+
+ALLOWED = ALLOWED_CHARS.get()
 
 
 def new_link(links, folder_path):
