@@ -9,20 +9,21 @@ PORT = WEB_SERVER_PORT
 
 
 def main():
-    # run_server_noblock()
     ui.startup()
     # folderPath = ui.getFolderPath()
     folder_path = "/Users/pri/Documents/GitHub/go.juliapri.pink/"
+    # run_server_noblock(folder_path)
 
     while True:
         loop.loop(folder_path)
 
 
-def run_server_noblock():
+def run_server_noblock(folder_path):
     server_thread = threading.Thread(
         target=web.run_server,
         args=(
             PORT,
+            folder_path,
         ),
         daemon=True,
     )

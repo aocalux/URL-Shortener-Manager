@@ -13,7 +13,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(b"<h1>404 - Not Found</h1>")
 
 
-def run_server(PORT):
+def run_server(PORT, folder_path):
     server_address = ("", PORT)
 
     httpd = HTTPServer(server_address, Handler)
